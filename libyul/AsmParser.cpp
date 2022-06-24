@@ -154,6 +154,14 @@ void Parser::fetchDebugDataFromComment()
 	string_view commentLiteral = m_scanner->currentCommentLiteral();
 	match_results<string_view::const_iterator> match;
 
+	// (ugly) workaround to avoid regex seg fault with too large strings
+	size_t sizeLimit = 32 * 1024;
+	if (commentLiteral.size() > sizeLimit)
+	{
+		size_t resizeIndex = commentLiteral.find_first_of('\"');
+		commentLiteral = commentLiteral.substr(0, resizeIndex);
+	}
+
 	langutil::SourceLocation originLocation = m_locationFromComment;
 	// Empty for each new node.
 	optional<int> astID;
