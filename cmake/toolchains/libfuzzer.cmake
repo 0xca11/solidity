@@ -1,5 +1,5 @@
 # Inherit default options
-include("${CMAKE_CURRENT_LIST_DIR}/default.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/third_party/solidity/default.cmake")
 # Enable Z3, disable CVC4
 set(USE_Z3 ON CACHE BOOL "Enable Z3" FORCE)
 set(USE_CVC4 OFF CACHE BOOL "Disable CVC4" FORCE)
