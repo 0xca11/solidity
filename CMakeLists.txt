@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.13.0)
 
-set(ETH_CMAKE_DIR   "${CMAKE_CURRENT_LIST_DIR}/cmake"   CACHE PATH "The the path to the cmake directory")
+set(ETH_CMAKE_DIR   "${CMAKE_CURRENT_LIST_DIR}/third_party/solidity/cmake"   CACHE PATH "The the path to the cmake directory")
 list(APPEND CMAKE_MODULE_PATH ${ETH_CMAKE_DIR})
 
 # Set the build type, if none was specified.
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-	if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+	if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/solidity/.git")
 		set(DEFAULT_BUILD_TYPE "RelWithDebInfo")
 	else()
 		set(DEFAULT_BUILD_TYPE "Release")
@@ -60,12 +60,12 @@ include(EthUtils)
 
 # Create license.h from LICENSE.txt and template
 # Converting to char array is required due to MSVC's string size limit.
-file(READ ${CMAKE_SOURCE_DIR}/LICENSE.txt LICENSE_TEXT HEX)
+file(READ ${CMAKE_SOURCE_DIR}/third_party/solidity/LICENSE.txt LICENSE_TEXT HEX)
 string(REGEX MATCHALL ".." LICENSE_TEXT "${LICENSE_TEXT}")
 string(REGEX REPLACE ";" ",\n\t0x" LICENSE_TEXT "${LICENSE_TEXT}")
 set(LICENSE_TEXT "0x${LICENSE_TEXT}")
 
-configure_file("${CMAKE_SOURCE_DIR}/cmake/templates/license.h.in" include/license.h)
+configure_file("${CMAKE_SOURCE_DIR}/third_party/solidity/cmake/templates/license.h.in" include/license.h)
 
 include(EthOptions)
 configure_project(TESTS)
