@@ -10,22 +10,22 @@ set(prefix "${CMAKE_BINARY_DIR}/deps")
 set(RANGE_V3_INCLUDE_DIR "${prefix}/include")
 
 ExternalProject_Add(range-v3-project
-    PREFIX "${prefix}"
-    DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/third_party/solidity/deps/downloads"
-    DOWNLOAD_NAME range-v3-0.12.0.tar.gz
-    URL https://github.com/ericniebler/range-v3/archive/0.12.0.tar.gz
-    URL_HASH SHA256=015adb2300a98edfceaf0725beec3337f542af4915cec4d0b89fa0886f4ba9cb
-    CMAKE_COMMAND ${RANGE_V3_CMAKE_COMMAND}
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
-               -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-               -DBUILD_TESTING=OFF
-               -DRANGES_CXX_STD=${CMAKE_CXX_STANDARD}
-               -DRANGE_V3_DOCS=OFF
-               -DRANGE_V3_EXAMPLES=OFF
-               -DRANGE_V3_TESTS=OFF
-               -DRANGES_BUILD_CALENDAR_EXAMPLE=OFF
-               -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-    BUILD_BYPRODUCTS "${RANGE_V3_INCLUDE_DIR}/range/v3/all.hpp"
+	PREFIX "${prefix}"
+	DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/deps/downloads"
+	DOWNLOAD_NAME range-v3-0.12.0.tar.gz
+	URL https://github.com/ericniebler/range-v3/archive/0.12.0.tar.gz
+	URL_HASH SHA256=015adb2300a98edfceaf0725beec3337f542af4915cec4d0b89fa0886f4ba9cb
+	CMAKE_COMMAND ${RANGE_V3_CMAKE_COMMAND}
+	CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+	-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+	-DBUILD_TESTING=OFF
+	-DRANGES_CXX_STD=${CMAKE_CXX_STANDARD}
+	-DRANGE_V3_DOCS=OFF
+	-DRANGE_V3_EXAMPLES=OFF
+	-DRANGE_V3_TESTS=OFF
+	-DRANGES_BUILD_CALENDAR_EXAMPLE=OFF
+	-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+	BUILD_BYPRODUCTS "${RANGE_V3_INCLUDE_DIR}/range/v3/all.hpp"
 )
 
 # Create range-v3 imported library
